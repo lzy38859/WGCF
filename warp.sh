@@ -644,7 +644,9 @@ View_WireGuard_Profile() {
     Print_Delimiter
 }
 
-Check_WireGuard_Peer_Endpoint() {}
+Check_WireGuard_Peer_Endpoint() {
+echo -e " "
+}
 
 Set_WARP_IPv4() {
     Install_WireGuard
