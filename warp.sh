@@ -766,7 +766,7 @@ Print_Usage() {
     echo -e "
 
 USAGE:
-    bash <(curl -fsSL https://raw.githubusercontent.com/lzy38859/WGCF/main/warp.sh) [SUBCOMMAND]
+    bash <(curl -fsSL https://raw.githubusercontent.com/lzy38859/WGCF/lzy38859-patch-1/warp.sh) [SUBCOMMAND]
 
 SUBCOMMANDS:
     wg4             Configuration WARP IPv4 Global Network (with WireGuard), all IPv4 outbound data over the WARP network
