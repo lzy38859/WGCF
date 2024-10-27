@@ -645,23 +645,12 @@ View_WireGuard_Profile() {
 }
 
 Check_WireGuard_Peer_Endpoint() {}
-#   if ping -c1 -W1 ${WireGuard_Peer_Endpoint_IP4} >/dev/null 2>&1; then
-#      WireGuard_Peer_Endpoint="${WireGuard_Peer_Endpoint_IPv4}"
-#   elif ping6 -c1 -W1 ${WireGuard_Peer_Endpoint_IP6} >/dev/null 2>&1; then
-#       WireGuard_Peer_Endpoint="${WireGuard_Peer_Endpoint_IPv6}"
-#  else
-#      WireGuard_Peer_Endpoint="${WireGuard_Peer_Endpoint_Domain}"
-#  fi
 
 Set_WARP_IPv4() {
     Install_WireGuard
     Get_IP_addr
     Load_WGCF_Profile
-#    if [[ ${IPv4Status} = off && ${IPv6Status} = on ]]; then
-#        WireGuard_Interface_DNS="${WireGuard_Interface_DNS_64}"
-#    else
-        WireGuard_Interface_DNS="${WireGuard_Interface_DNS_46}"
-#    fi
+    WireGuard_Interface_DNS="${WireGuard_Interface_DNS_46}"
     WireGuard_Peer_AllowedIPs="${WireGuard_Peer_AllowedIPs_IPv6}"
     Check_WireGuard_Peer_Endpoint
     Generate_WireGuardProfile_Interface
