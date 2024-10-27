@@ -644,7 +644,7 @@ View_WireGuard_Profile() {
     Print_Delimiter
 }
 
-Check_WireGuard_Peer_Endpoint() {
+Check_WireGuard_Peer_Endpoint() {}
 #   if ping -c1 -W1 ${WireGuard_Peer_Endpoint_IP4} >/dev/null 2>&1; then
 #      WireGuard_Peer_Endpoint="${WireGuard_Peer_Endpoint_IPv4}"
 #   elif ping6 -c1 -W1 ${WireGuard_Peer_Endpoint_IP6} >/dev/null 2>&1; then
@@ -652,7 +652,6 @@ Check_WireGuard_Peer_Endpoint() {
 #  else
 #      WireGuard_Peer_Endpoint="${WireGuard_Peer_Endpoint_Domain}"
 #  fi
-}
 
 Set_WARP_IPv4() {
     Install_WireGuard
