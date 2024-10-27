@@ -119,7 +119,7 @@ Print_Delimiter() {
 }
 
 Install_wgcf() {
-    curl -fsSL https://raw.githubusercontent.com/yirenchengfeng1/warp/main/wgcf.sh | bash
+    curl -fsSL https://raw.githubusercontent.com/lzy38859/WGCF/main/wgcf.sh | bash
 }
 
 Uninstall_wgcf() {
@@ -766,7 +766,7 @@ Print_Usage() {
     echo -e "
 
 USAGE:
-    bash <(curl -fsSL https://raw.githubusercontent.com/yirenchengfeng1/warp/main/warp.sh) [SUBCOMMAND]
+    bash <(curl -fsSL https://raw.githubusercontent.com/lzy38859/WGCF/main/warp.sh) [SUBCOMMAND]
 
 SUBCOMMANDS:
     wg4             Configuration WARP IPv4 Global Network (with WireGuard), all IPv4 outbound data over the WARP network
