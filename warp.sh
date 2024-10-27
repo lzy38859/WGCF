@@ -645,25 +645,25 @@ View_WireGuard_Profile() {
 }
 
 Check_WireGuard_Peer_Endpoint() {
-    if ping -c1 -W1 ${WireGuard_Peer_Endpoint_IP4} >/dev/null 2>&1; then
-        WireGuard_Peer_Endpoint="${WireGuard_Peer_Endpoint_IPv4}"
-    elif ping6 -c1 -W1 ${WireGuard_Peer_Endpoint_IP6} >/dev/null 2>&1; then
-        WireGuard_Peer_Endpoint="${WireGuard_Peer_Endpoint_IPv6}"
-    else
-        WireGuard_Peer_Endpoint="${WireGuard_Peer_Endpoint_Domain}"
-    fi
+#   if ping -c1 -W1 ${WireGuard_Peer_Endpoint_IP4} >/dev/null 2>&1; then
+#      WireGuard_Peer_Endpoint="${WireGuard_Peer_Endpoint_IPv4}"
+#   elif ping6 -c1 -W1 ${WireGuard_Peer_Endpoint_IP6} >/dev/null 2>&1; then
+#       WireGuard_Peer_Endpoint="${WireGuard_Peer_Endpoint_IPv6}"
+#  else
+#      WireGuard_Peer_Endpoint="${WireGuard_Peer_Endpoint_Domain}"
+#  fi
 }
 
 Set_WARP_IPv4() {
     Install_WireGuard
     Get_IP_addr
     Load_WGCF_Profile
-    if [[ ${IPv4Status} = off && ${IPv6Status} = on ]]; then
-        WireGuard_Interface_DNS="${WireGuard_Interface_DNS_64}"
-    else
+#    if [[ ${IPv4Status} = off && ${IPv6Status} = on ]]; then
+#        WireGuard_Interface_DNS="${WireGuard_Interface_DNS_64}"
+#    else
         WireGuard_Interface_DNS="${WireGuard_Interface_DNS_46}"
-    fi
-    WireGuard_Peer_AllowedIPs="${WireGuard_Peer_AllowedIPs_IPv4}"
+#    fi
+    WireGuard_Peer_AllowedIPs="${WireGuard_Peer_AllowedIPs_IPv6}"
     Check_WireGuard_Peer_Endpoint
     Generate_WireGuardProfile_Interface
     if [[ -n ${IPv4_addr} ]]; then
@@ -679,12 +679,12 @@ Set_WARP_IPv6() {
     Install_WireGuard
     Get_IP_addr
     Load_WGCF_Profile
-    if [[ ${IPv4Status} = off && ${IPv6Status} = on ]]; then
+ #   if [[ ${IPv4Status} = off && ${IPv6Status} = on ]]; then
         WireGuard_Interface_DNS="${WireGuard_Interface_DNS_64}"
-    else
-        WireGuard_Interface_DNS="${WireGuard_Interface_DNS_46}"
-    fi
-    WireGuard_Peer_AllowedIPs="${WireGuard_Peer_AllowedIPs_IPv6}"
+ #   else
+ #       WireGuard_Interface_DNS="${WireGuard_Interface_DNS_46}"
+ #   fi
+    WireGuard_Peer_AllowedIPs="${WireGuard_Peer_AllowedIPs_IPv4}"
     Check_WireGuard_Peer_Endpoint
     Generate_WireGuardProfile_Interface
     if [[ -n ${IPv6_addr} ]]; then
@@ -700,7 +700,7 @@ Set_WARP_DualStack() {
     Install_WireGuard
     Get_IP_addr
     Load_WGCF_Profile
-    WireGuard_Interface_DNS="${WireGuard_Interface_DNS_46}"
+    WireGuard_Interface_DNS="${WireGuard_Interface_DNS_64}"
     WireGuard_Peer_AllowedIPs="${WireGuard_Peer_AllowedIPs_DualStack}"
     Check_WireGuard_Peer_Endpoint
     Generate_WireGuardProfile_Interface
@@ -787,12 +787,15 @@ if [ $# -ge 1 ]; then
     Get_System_Info
     case ${1} in
     wg4 | 4)
+        WireGuard_Peer_Endpoint="${WireGuard_Peer_Endpoint_IPv4}"
         Set_WARP_IPv4
         ;;
     wg6 | 6)
+        WireGuard_Peer_Endpoint="${WireGuard_Peer_Endpoint_IPv6}"
         Set_WARP_IPv6
         ;;
     wgd | d)
+        WireGuard_Peer_Endpoint="${WireGuard_Peer_Endpoint_Domain}"
         Set_WARP_DualStack
         ;;
     wgx | x)
